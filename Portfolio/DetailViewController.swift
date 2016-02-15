@@ -7,39 +7,40 @@
 //
 
 import UIKit
+import CoreData
 
 class DetailViewController: UIViewController {
-
-    @IBOutlet weak var detailDescriptionLabel: UILabel!
-
-
+    
+    @IBOutlet weak var titleTextLabel: UILabel!
+    @IBOutlet weak var descriptionTextLabel: UILabel!
+    
+    var project : Project! = nil
+    
     var detailItem: AnyObject? {
         didSet {
-            // Update the view.
-            self.configureView()
         }
     }
-
+    
+    override func viewDidLoad() {
+        configureView()
+    }
+    
     func configureView() {
         // Update the user interface for the detail item.
-        if let detail = self.detailItem {
-            if let label = self.detailDescriptionLabel {
-                label.text = detail.valueForKey("timeStamp")!.description
+        if let titleLabel = self.detailItem {
+            if let label = self.titleTextLabel {
+                label.text = titleLabel.valueForKey("projectTitle")!.description
+            }
+        }
+        if let desctionLabel = self.detailItem {
+            if let label = self.descriptionTextLabel {
+                label.text = desctionLabel.valueForKey("projectWriteup")!.description
             }
         }
     }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        self.configureView()
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-
+//    func configureCell (){
+//        self.titleTextLabel.text = self.project?.projectTitle
+//        self.descriptionTextLabel.text = self.project?.projectWriteup
+//    }
+    
 }
-
