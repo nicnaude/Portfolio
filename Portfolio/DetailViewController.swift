@@ -34,13 +34,13 @@ class DetailViewController: UIViewController {
         }
         if let desctionLabel = self.detailItem {
             if let label = self.descriptionTextLabel {
-                label.text = desctionLabel.valueForKey("projectWriteup")!.description
+                label.text = desctionLabel.valueForKey("projectWriteUp")!.description
             }
         }
     }
 //    func configureCell (){
 //        self.titleTextLabel.text = self.project?.projectTitle
-//        self.descriptionTextLabel.text = self.project?.projectWriteup
+//        self.descriptionTextLabel.text = self.project?.projectWriteUp
 //    }
     
 }

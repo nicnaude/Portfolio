@@ -14,7 +14,8 @@ import CoreData
 
 extension ProjectPhoto {
 
+    @NSManaged var photoImage: NSData?
     @NSManaged var photoDescription: String?
-    @NSManaged var photo: NSData?
+    @NSManaged var owned: NSSet?
 
 }

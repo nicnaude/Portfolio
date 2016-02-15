@@ -9,25 +9,36 @@
 import UIKit
 import CoreData
 
-class AddProjectViewController: UIViewController {
+class AddProjectViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @IBOutlet weak var projectTitleTextField: UITextField!
-    
     @IBOutlet weak var projectDescriptionTextField: UITextField!
+    let imagePickerController = UIImagePickerController()
+    var usersImage: UIImage!
+    var imageURL: NSURL?
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        imagePickerController.delegate = self
+        imagePickerController.allowsEditing = true
         // Do any additional setup after loading the view.
     }
     
     //    override func viewWillDisappear(animated: Bool){
     //}
     
-    @IBAction func onTakePhotoTapped(sender: AnyObject) {
+    @IBAction func onAddPhotoTapped(sender: AnyObject) {
+    }
+
+    @IBAction func onAddCoverPhotoTapped(sender: AnyObject) {
+        presentCamera()
     }
     
-    @IBAction func onChoosePhotoTapped(sender: AnyObject) {
+    func presentCamera()
+    {
+        imagePickerController.sourceType = UIImagePickerControllerSourceType.Camera
+        presentViewController(imagePickerController, animated: true, completion: nil)
     }
     
     @IBAction func onSaveButtonTapped(sender: AnyObject) {
@@ -36,7 +47,7 @@ class AddProjectViewController: UIViewController {
         
         let newProject = NSEntityDescription.insertNewObjectForEntityForName("Project", inManagedObjectContext: context)
         newProject.setValue(projectTitleTextField.text, forKey: "projectTitle")
-        newProject.setValue(projectDescriptionTextField.text, forKey: "projectWriteup")
+        newProject.setValue(projectDescriptionTextField.text, forKey: "projectWriteUp")
         
         if context.hasChanges {
             do {
@@ -50,4 +61,7 @@ class AddProjectViewController: UIViewController {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
+    @IBAction func onCancelButtonTapped(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
 }

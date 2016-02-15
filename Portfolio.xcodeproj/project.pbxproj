@@ -16,11 +16,11 @@
 		4AC308411C71298100C7B464 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4AC3083F1C71298100C7B464 /* LaunchScreen.storyboard */; };
 		4AC3084C1C71298100C7B464 /* PortfolioTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC3084B1C71298100C7B464 /* PortfolioTests.swift */; };
 		4AC308571C71298100C7B464 /* PortfolioUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC308561C71298100C7B464 /* PortfolioUITests.swift */; };
-		4AC3086B1C712BB400C7B464 /* ProjectPhoto+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC308671C712BB400C7B464 /* ProjectPhoto+CoreDataProperties.swift */; };
-		4AC3086C1C712BB400C7B464 /* ProjectPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC308681C712BB400C7B464 /* ProjectPhoto.swift */; };
-		4AC3086D1C712BB400C7B464 /* Project+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC308691C712BB400C7B464 /* Project+CoreDataProperties.swift */; };
-		4AC3086E1C712BB400C7B464 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC3086A1C712BB400C7B464 /* Project.swift */; };
 		4AC308721C712DEE00C7B464 /* AddProjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC308711C712DEE00C7B464 /* AddProjectViewController.swift */; };
+		4AC308BE1C716FE600C7B464 /* Project+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC308BA1C716FE600C7B464 /* Project+CoreDataProperties.swift */; };
+		4AC308BF1C716FE600C7B464 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC308BB1C716FE600C7B464 /* Project.swift */; };
+		4AC308C01C716FE600C7B464 /* ProjectPhoto+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC308BC1C716FE600C7B464 /* ProjectPhoto+CoreDataProperties.swift */; };
+		4AC308C11C716FE600C7B464 /* ProjectPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC308BD1C716FE600C7B464 /* ProjectPhoto.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,11 +56,11 @@
 		4AC308521C71298100C7B464 /* PortfolioUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PortfolioUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AC308561C71298100C7B464 /* PortfolioUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioUITests.swift; sourceTree = "<group>"; };
 		4AC308581C71298100C7B464 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4AC308671C712BB400C7B464 /* ProjectPhoto+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ProjectPhoto+CoreDataProperties.swift"; path = "../ProjectPhoto+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		4AC308681C712BB400C7B464 /* ProjectPhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProjectPhoto.swift; path = ../ProjectPhoto.swift; sourceTree = "<group>"; };
-		4AC308691C712BB400C7B464 /* Project+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Project+CoreDataProperties.swift"; path = "../Project+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		4AC3086A1C712BB400C7B464 /* Project.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Project.swift; path = ../Project.swift; sourceTree = "<group>"; };
 		4AC308711C712DEE00C7B464 /* AddProjectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddProjectViewController.swift; sourceTree = "<group>"; };
+		4AC308BA1C716FE600C7B464 /* Project+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Project+CoreDataProperties.swift"; path = "../Project+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		4AC308BB1C716FE600C7B464 /* Project.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Project.swift; path = ../Project.swift; sourceTree = "<group>"; };
+		4AC308BC1C716FE600C7B464 /* ProjectPhoto+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ProjectPhoto+CoreDataProperties.swift"; path = "../ProjectPhoto+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		4AC308BD1C716FE600C7B464 /* ProjectPhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProjectPhoto.swift; path = ../ProjectPhoto.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,7 +151,6 @@
 			isa = PBXGroup;
 			children = (
 				4AC308421C71298100C7B464 /* Info.plist */,
-				4AC308331C71298100C7B464 /* Portfolio.xcdatamodeld */,
 				4AC308311C71298100C7B464 /* AppDelegate.swift */,
 			);
 			name = "Supporting files";
@@ -161,10 +160,11 @@
 		4AC308661C712A2A00C7B464 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				4AC308681C712BB400C7B464 /* ProjectPhoto.swift */,
-				4AC308671C712BB400C7B464 /* ProjectPhoto+CoreDataProperties.swift */,
-				4AC308691C712BB400C7B464 /* Project+CoreDataProperties.swift */,
-				4AC3086A1C712BB400C7B464 /* Project.swift */,
+				4AC308331C71298100C7B464 /* Portfolio.xcdatamodeld */,
+				4AC308BA1C716FE600C7B464 /* Project+CoreDataProperties.swift */,
+				4AC308BB1C716FE600C7B464 /* Project.swift */,
+				4AC308BC1C716FE600C7B464 /* ProjectPhoto+CoreDataProperties.swift */,
+				4AC308BD1C716FE600C7B464 /* ProjectPhoto.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -312,13 +312,13 @@
 			files = (
 				4AC308351C71298100C7B464 /* Portfolio.xcdatamodeld in Sources */,
 				4AC308321C71298100C7B464 /* AppDelegate.swift in Sources */,
-				4AC3086B1C712BB400C7B464 /* ProjectPhoto+CoreDataProperties.swift in Sources */,
-				4AC3086D1C712BB400C7B464 /* Project+CoreDataProperties.swift in Sources */,
 				4AC308371C71298100C7B464 /* MasterViewController.swift in Sources */,
-				4AC3086C1C712BB400C7B464 /* ProjectPhoto.swift in Sources */,
 				4AC308721C712DEE00C7B464 /* AddProjectViewController.swift in Sources */,
+				4AC308C11C716FE600C7B464 /* ProjectPhoto.swift in Sources */,
+				4AC308C01C716FE600C7B464 /* ProjectPhoto+CoreDataProperties.swift in Sources */,
+				4AC308BE1C716FE600C7B464 /* Project+CoreDataProperties.swift in Sources */,
+				4AC308BF1C716FE600C7B464 /* Project.swift in Sources */,
 				4AC308391C71298100C7B464 /* DetailViewController.swift in Sources */,
-				4AC3086E1C712BB400C7B464 /* Project.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

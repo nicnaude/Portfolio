@@ -3,15 +3,18 @@
     <entity name="Project" representedClassName=".Project">
         <attribute name="coverImage" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
         <attribute name="projectTitle" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="projectWriteup" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="projectWriteUp" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="timeStamp" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="owns" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProjectPhoto" inverseName="owned" inverseEntity="ProjectPhoto" syncable="YES"/>
         <userInfo/>
     </entity>
     <entity name="ProjectPhoto" representedClassName=".ProjectPhoto" syncable="YES">
-        <attribute name="photo" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
         <attribute name="photoDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="photoImage" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
+        <relationship name="owned" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Project" inverseName="owns" inverseEntity="Project" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Project" positionX="261" positionY="189" width="128" height="90"/>
-        <element name="ProjectPhoto" positionX="261" positionY="216" width="128" height="75"/>
+        <element name="Project" positionX="63" positionY="198" width="128" height="118"/>
+        <element name="ProjectPhoto" positionX="225" positionY="200" width="128" height="88"/>
     </elements>
 </model>

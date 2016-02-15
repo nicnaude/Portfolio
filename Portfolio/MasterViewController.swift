@@ -136,7 +136,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         fetchRequest.fetchBatchSize = 30
         
         // Edit the sort key as appropriate.
-        let sortDescriptor = NSSortDescriptor(key: "projectTitle", ascending: false)
+        let sortDescriptor = NSSortDescriptor(key: "timeStamp", ascending: true)
         
         fetchRequest.sortDescriptors = [sortDescriptor]
         
