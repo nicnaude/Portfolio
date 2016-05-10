@@ -33,12 +33,18 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     override func viewWillAppear(animated: Bool) {
         self.clearsSelectionOnViewWillAppear = self.splitViewController!.collapsed
         super.viewWillAppear(animated)
+        setupUI()
     }
     
     //    override func didReceiveMemoryWarning() {
     //        super.didReceiveMemoryWarning()
     //        // Dispose of any resources that can be recreated.
     //    }
+    
+    
+    func setupUI() {
+    }
+    
     
     func insertNewObject(sender: AnyObject) {
         let context = self.fetchedResultsController.managedObjectContext
@@ -77,28 +83,37 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return self.fetchedResultsController.sections?.count ?? 0
     }
+    //
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let sectionInfo = self.fetchedResultsController.sections![section]
         return sectionInfo.numberOfObjects
     }
+    //
+    
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! MenuCell
         self.configureCell(cell, atIndexPath: indexPath)
-        cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
-        
-        //        let project = self.project[indexPath.row]
-        //        cell.textLabel?.text = project.projectTitle
+        let object = self.fetchedResultsController.objectAtIndexPath(indexPath) as! Project
+        //        cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+        cell.cellImage.image = UIImage(named:"placeholder")
+        cell.cellTextField.text = object.valueForKey("projectTitle")!.description
+        cell.cellTextField.textAlignment = .Left
+//        cell.cellTextField.
         
         return cell
     }
+    //
+    
     
     // allow editing of the tableview
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
         return true
     }
+    //
+    
     
     // edit the tableview
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
@@ -114,12 +129,13 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
             }
         }
     }
+    //
     
     
     func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
-        let object = self.fetchedResultsController.objectAtIndexPath(indexPath)
-        cell.textLabel!.text = object.valueForKey("projectTitle")!.description
     }
+    //
+    
     
     // MARK: - Fetched results controller
     
@@ -158,6 +174,8 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     func controllerWillChangeContent(controller: NSFetchedResultsController) {
         self.tableView.beginUpdates()
     }
+    //
+    
     
     func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
         switch type {
@@ -169,6 +187,8 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
             return
         }
     }
+    //
+    
     
     func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
         switch type {
@@ -183,57 +203,64 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
             tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)
         }
     }
+    //
+    
     
     func controllerDidChangeContent(controller: NSFetchedResultsController) {
         self.tableView.endUpdates()
     }
     
-    /*
-    
-    func configureView() {
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        self.splitViewController?.toggleMasterView()
+    }
     //
-    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-    let moc = appDelegate.managedObjectContext
     
-    // Initialize Fetch Request
-    let fetchRequest = NSFetchRequest()
-    
-    // Create Entity Description
-    let entityDescription = NSEntityDescription.entityForName("Portfolio", inManagedObjectContext: moc)
-    
-    // Configure Fetch Request
-    fetchRequest.entity = entityDescription
-    
-    do {
-    let result = try moc.executeFetchRequest(fetchRequest)
-    print(result)
-    
-    } catch {
-    let fetchError = error as NSError
-    print(fetchError)
-    }
-    
-    self.descriptionTextLabel.text = Portfolio.Project.
-    }
-    
-    override func viewDidLoad() {
-    super.viewDidLoad()
-    self.configureView()
-    }
-    
-    override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
-    }
-    
-    
-    // Implementing the above methods to update the table view in response to individual changes may have performance implications if a large number of changes are made simultaneously. If this proves to be an issue, you can instead just implement controllerDidChangeContent: which notifies the delegate that all section and object changes have been processed.
-    
-    func controllerDidChangeContent(controller: NSFetchedResultsController) {
-    // In the simplest, most efficient, case, reload the table view.
-    self.tableView.reloadData()
-    }
-    */
+    /*
+     
+     func configureView() {
+     //
+     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+     let moc = appDelegate.managedObjectContext
+     
+     // Initialize Fetch Request
+     let fetchRequest = NSFetchRequest()
+     
+     // Create Entity Description
+     let entityDescription = NSEntityDescription.entityForName("Portfolio", inManagedObjectContext: moc)
+     
+     // Configure Fetch Request
+     fetchRequest.entity = entityDescription
+     
+     do {
+     let result = try moc.executeFetchRequest(fetchRequest)
+     print(result)
+     
+     } catch {
+     let fetchError = error as NSError
+     print(fetchError)
+     }
+     
+     self.descriptionTextLabel.text = Portfolio.Project.
+     }
+     
+     override func viewDidLoad() {
+     super.viewDidLoad()
+     self.configureView()
+     }
+     
+     override func didReceiveMemoryWarning() {
+     super.didReceiveMemoryWarning()
+     // Dispose of any resources that can be recreated.
+     }
+     
+     
+     // Implementing the above methods to update the table view in response to individual changes may have performance implications if a large number of changes are made simultaneously. If this proves to be an issue, you can instead just implement controllerDidChangeContent: which notifies the delegate that all section and object changes have been processed.
+     
+     func controllerDidChangeContent(controller: NSFetchedResultsController) {
+     // In the simplest, most efficient, case, reload the table view.
+     self.tableView.reloadData()
+     }
+     */
     
 }
 
