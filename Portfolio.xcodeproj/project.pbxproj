@@ -7,13 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A3DB4BD1CE245A900031BBC /* PinterestLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3DB4BC1CE245A900031BBC /* PinterestLayout.swift */; };
+		4A3DB4BF1CE24BEB00031BBC /* RoundedCornersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3DB4BE1CE24BEB00031BBC /* RoundedCornersView.swift */; };
+		4A3DB4C11CE24C0900031BBC /* AnnotatedPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3DB4C01CE24C0900031BBC /* AnnotatedPhotoCell.swift */; };
+		4A3DB4C31CE3278400031BBC /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3DB4C21CE3278300031BBC /* TabBarController.swift */; };
 		4A6B20EC1CE1047100B15F2F /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6B20EB1CE1047100B15F2F /* MenuCell.swift */; };
 		4A6B20EE1CE10AC200B15F2F /* ToggleMaster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6B20ED1CE10AC200B15F2F /* ToggleMaster.swift */; };
 		4A6B20F01CE1E77D00B15F2F /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6B20EF1CE1E77D00B15F2F /* CollectionViewController.swift */; };
 		4A6B20F21CE1EE4000B15F2F /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6B20F11CE1EE4000B15F2F /* CollectionViewCell.swift */; };
 		4AC308321C71298100C7B464 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC308311C71298100C7B464 /* AppDelegate.swift */; };
 		4AC308351C71298100C7B464 /* Portfolio.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4AC308331C71298100C7B464 /* Portfolio.xcdatamodeld */; };
-		4AC308371C71298100C7B464 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC308361C71298100C7B464 /* MasterViewController.swift */; };
 		4AC308391C71298100C7B464 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC308381C71298100C7B464 /* DetailViewController.swift */; };
 		4AC3083C1C71298100C7B464 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4AC3083A1C71298100C7B464 /* Main.storyboard */; };
 		4AC3083E1C71298100C7B464 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4AC3083D1C71298100C7B464 /* Assets.xcassets */; };
@@ -45,14 +48,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4A3DB4BC1CE245A900031BBC /* PinterestLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinterestLayout.swift; sourceTree = "<group>"; };
+		4A3DB4BE1CE24BEB00031BBC /* RoundedCornersView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedCornersView.swift; sourceTree = "<group>"; };
+		4A3DB4C01CE24C0900031BBC /* AnnotatedPhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnotatedPhotoCell.swift; sourceTree = "<group>"; };
+		4A3DB4C21CE3278300031BBC /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		4A6B20EB1CE1047100B15F2F /* MenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
 		4A6B20ED1CE10AC200B15F2F /* ToggleMaster.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToggleMaster.swift; sourceTree = "<group>"; };
-		4A6B20EF1CE1E77D00B15F2F /* CollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
+		4A6B20EF1CE1E77D00B15F2F /* CollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CollectionViewController.swift; path = ../CollectionViewController.swift; sourceTree = "<group>"; };
 		4A6B20F11CE1EE4000B15F2F /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		4AC3082E1C71298100C7B464 /* Portfolio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Portfolio.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AC308311C71298100C7B464 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4AC308341C71298100C7B464 /* Portfolio.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Portfolio.xcdatamodel; sourceTree = "<group>"; };
-		4AC308361C71298100C7B464 /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
 		4AC308381C71298100C7B464 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		4AC3083B1C71298100C7B464 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4AC3083D1C71298100C7B464 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -99,7 +105,6 @@
 		4AC308251C71298100C7B464 = {
 			isa = PBXGroup;
 			children = (
-				4A6B20EF1CE1E77D00B15F2F /* CollectionViewController.swift */,
 				4AC308301C71298100C7B464 /* Portfolio */,
 				4AC3084A1C71298100C7B464 /* PortfolioTests */,
 				4AC308551C71298100C7B464 /* PortfolioUITests */,
@@ -149,10 +154,14 @@
 		4AC308641C712A0200C7B464 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				4A6B20EB1CE1047100B15F2F /* MenuCell.swift */,
 				4AC3083A1C71298100C7B464 /* Main.storyboard */,
+				4A3DB4C21CE3278300031BBC /* TabBarController.swift */,
+				4A3DB4BC1CE245A900031BBC /* PinterestLayout.swift */,
+				4A3DB4C01CE24C0900031BBC /* AnnotatedPhotoCell.swift */,
+				4A6B20EB1CE1047100B15F2F /* MenuCell.swift */,
 				4A6B20F11CE1EE4000B15F2F /* CollectionViewCell.swift */,
 				4AC3083D1C71298100C7B464 /* Assets.xcassets */,
+				4A3DB4BE1CE24BEB00031BBC /* RoundedCornersView.swift */,
 				4AC3083F1C71298100C7B464 /* LaunchScreen.storyboard */,
 			);
 			name = View;
@@ -184,7 +193,7 @@
 		4AC308701C712C0300C7B464 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				4AC308361C71298100C7B464 /* MasterViewController.swift */,
+				4A6B20EF1CE1E77D00B15F2F /* CollectionViewController.swift */,
 				4AC308711C712DEE00C7B464 /* AddProjectViewController.swift */,
 				4AC308381C71298100C7B464 /* DetailViewController.swift */,
 			);
@@ -322,17 +331,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A3DB4BD1CE245A900031BBC /* PinterestLayout.swift in Sources */,
+				4A3DB4C31CE3278400031BBC /* TabBarController.swift in Sources */,
 				4A6B20F01CE1E77D00B15F2F /* CollectionViewController.swift in Sources */,
 				4AC308351C71298100C7B464 /* Portfolio.xcdatamodeld in Sources */,
 				4AC308321C71298100C7B464 /* AppDelegate.swift in Sources */,
+				4A3DB4C11CE24C0900031BBC /* AnnotatedPhotoCell.swift in Sources */,
 				4A6B20EE1CE10AC200B15F2F /* ToggleMaster.swift in Sources */,
-				4AC308371C71298100C7B464 /* MasterViewController.swift in Sources */,
 				4AC308721C712DEE00C7B464 /* AddProjectViewController.swift in Sources */,
 				4AC308C11C716FE600C7B464 /* ProjectPhoto.swift in Sources */,
 				4AC308C01C716FE600C7B464 /* ProjectPhoto+CoreDataProperties.swift in Sources */,
 				4A6B20F21CE1EE4000B15F2F /* CollectionViewCell.swift in Sources */,
 				4A6B20EC1CE1047100B15F2F /* MenuCell.swift in Sources */,
 				4AC308BE1C716FE600C7B464 /* Project+CoreDataProperties.swift in Sources */,
+				4A3DB4BF1CE24BEB00031BBC /* RoundedCornersView.swift in Sources */,
 				4AC308BF1C716FE600C7B464 /* Project.swift in Sources */,
 				4AC308391C71298100C7B464 /* DetailViewController.swift in Sources */,
 			);
