@@ -27,17 +27,17 @@ class ProductsGridFlowLayout: UICollectionViewFlowLayout {
      Sets up the layout for the collectionView. 0 distance between each cell, and vertical layout
      */
     func setupLayout() {
-        minimumInteritemSpacing = 15
-        minimumLineSpacing = 36
+        minimumInteritemSpacing = 10
+        minimumLineSpacing = 30
         scrollDirection = .Vertical
     }
     
     func itemWidth() -> CGFloat {
-        return ((CGRectGetWidth(collectionView!.frame)-42)/3)-15
+        return ((CGRectGetWidth(collectionView!.frame)-40)/3)-10
     }
     
     func itemHeight() -> CGFloat {
-        return ((CGRectGetWidth(collectionView!.frame)-42)/3)-15
+        return ((CGRectGetWidth(collectionView!.frame)-42)/3)-10+100
     }
     
     override var itemSize: CGSize {

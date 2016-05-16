@@ -18,9 +18,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
     
         
-        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIColor(red:0.58, green:0.58, blue:0.58, alpha:1.0)], forState:.Normal)
-        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.whiteColor()], forState:.Selected)
-        UITabBar.appearance().tintColor = UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha: 1.0)
+        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIColor(red:0.58, green:0.58, blue:0.58, alpha:1.0)], forState:.Normal) // deselected icon color  UIColor(red:0.58, green:0.58, blue:0.58, alpha:1.0)
+        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.blackColor()], forState:.Selected) // selected icon color
+        UITabBar.appearance().tintColor = UIColor.blackColor()
         let font: UIFont = UIFont(name: "Avenir", size: 12)!
         UITabBarItem.appearance().setTitleTextAttributes([NSFontAttributeName: font], forState: .Normal)
         

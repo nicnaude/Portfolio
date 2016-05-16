@@ -13,70 +13,74 @@ class CollectionViewController: UIViewController, NSFetchedResultsControllerDele
     var shouldReloadCollectionView = false
     var blockOperation = NSBlockOperation()
     var _fetchedResultsController: NSFetchedResultsController? = nil
-    var testArray = ["432 Park Avenue", "This is a long sentence to see how it fits in the collectionview", "This is shorter", "Sentence here", "Another sentence and another"]
+    var testArray = ["432 Park Avenue", "Sotheby's", "The Blue Curve", "Sentence here", "Another sentence and another", "Across 110th Street", "Ellsworth", "This is shorter", "Sentence here", "Another sentence and another", "432 Park Avenue", "Mark Rothko", "This is shorter", "Sentence here", "Another sentence and another", "432 Park Avenue", "This is a long sentence to see how it fits in the collectionview", "This is shorter", "Sentence here", "Another sentence and another", "432 Park Avenue", "This is a long sentence to see how it fits in the collectionview", "This is shorter", "Sentence here", "Another sentence and another"]
     //    let appDel : AppDelegate = (UIApplication.sharedApplication().delegate as! AppDelegate)
     //    let context : NSManagedObjectContext = appDel.managedObjectContext
     var reuseIdentifier = "Cell"
-        
+    
     
     let gridFlowLayout = ProductsGridFlowLayout()
     let isGridFlowLayoutUsed = true
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.view.backgroundColor = UIColor.whiteColor()
-        collectionViewWidth = CGRectGetWidth(uiCollectionView!.frame)
-        print("collectionViewWidth: \(collectionViewWidth)")
-        
-        UIView.animateWithDuration(0.2) { () -> Void in
-            self.uiCollectionView.collectionViewLayout.invalidateLayout()
-            self.uiCollectionView.setCollectionViewLayout(self.gridFlowLayout, animated: true)
-        }
-        uiCollectionView.collectionViewLayout = gridFlowLayout
-        
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CollectionViewController.rotated), name: UIDeviceOrientationDidChangeNotification, object: nil)
+        addBlurEffect()
     }
     //
     
+//    override func viewWillLayoutSubviews() {
+//        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CollectionViewController.rotated), name: UIDeviceOrientationDidChangeNotification, object: nil)
+//        
+//        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+//            self.drawCollectionView()
+//        })
+//    }
 
+    func addBlurEffect() {
+        // Add blur view
+        let bounds = self.navigationController?.navigationBar.bounds as CGRect!
+        let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .Light))
+        visualEffectView.frame = bounds
+        visualEffectView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+    }
+    
     func rotated()
     {
         if(UIDeviceOrientationIsLandscape(UIDevice.currentDevice().orientation))
         {
-            UIView.animateWithDuration(0.2) { () -> Void in
-                self.uiCollectionView.collectionViewLayout.invalidateLayout()
-                self.uiCollectionView.setCollectionViewLayout(self.gridFlowLayout, animated: true)
-            }
-            uiCollectionView.collectionViewLayout = gridFlowLayout
+            drawCollectionView()
             print("landscape")
         }
         
         if(UIDeviceOrientationIsPortrait(UIDevice.currentDevice().orientation))
         {
-            UIView.animateWithDuration(0.2) { () -> Void in
-                self.uiCollectionView.collectionViewLayout.invalidateLayout()
-                self.uiCollectionView.setCollectionViewLayout(self.gridFlowLayout, animated: true)
-            }
-            uiCollectionView.collectionViewLayout = gridFlowLayout
+            drawCollectionView()
             print("Portrait")
         }
         
     }
     
+    func drawCollectionView() {
+        UIView.animateWithDuration(0.2) { () -> Void in
+            let collectionViewLayout = self.uiCollectionView.collectionViewLayout as? UICollectionViewFlowLayout
+            collectionViewLayout?.sectionInset = UIEdgeInsetsMake(20, 0, 100, 0)
+            self.uiCollectionView.collectionViewLayout.invalidateLayout()
+            self.uiCollectionView.setCollectionViewLayout(self.gridFlowLayout, animated: true)
+        }
+        uiCollectionView.collectionViewLayout = gridFlowLayout
+    }
     
-    //layout collectionview cell
-//    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-//        
-//        let numberOfCell: CGFloat = 3.5   //you need to give a type as CGFloat
-//        let cellWidth = UIScreen.mainScreen().bounds.size.width / numberOfCell
-//        let cellHeight = UIScreen.mainScreen().bounds.size.width / numberOfCell + 45
-//        return CGSizeMake(cellWidth, cellHeight)
-//    }//
-
-
+    
     override func viewDidLayoutSubviews() {
-        navigationController!.navigationBar.barTintColor = UIColor.whiteColor()
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CollectionViewController.rotated), name: UIDeviceOrientationDidChangeNotification, object: nil)
+        
+        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            self.drawCollectionView()
+        })
+
     }
     
     
@@ -184,7 +188,7 @@ class CollectionViewController: UIViewController, NSFetchedResultsControllerDele
     //    }
     //    //
     //
-
+    
     
     // MARK: UICollectionViewDataSource
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
@@ -222,8 +226,7 @@ class CollectionViewController: UIViewController, NSFetchedResultsControllerDele
         cell.contentView.layer.borderColor = UIColor(red:0.90, green:0.90, blue:0.90, alpha:1.0).CGColor
         cell.contentView.layer.masksToBounds = true
         cell.layer.masksToBounds = true
-        cell.layer.shadowPath = UIBezierPath(roundedRect:cell.bounds, cornerRadius:cell.contentView.layer.cornerRadius).CGPath
-
+        
         return cell
     }
     
