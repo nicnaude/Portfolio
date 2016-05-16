@@ -13,7 +13,7 @@ class CollectionViewController: UIViewController, NSFetchedResultsControllerDele
     var shouldReloadCollectionView = false
     var blockOperation = NSBlockOperation()
     var _fetchedResultsController: NSFetchedResultsController? = nil
-    var testArray = ["432 Park Avenue", "Park Avenue is a street in New York where lots of people live and this is a very long sentence to see how it looks on the collectionview cell", "The Pie Hole", "Long Island", "Sayville", "Lee Pace", "Nicholas Naudé","My address is 432 Park Avenue", "New York is where I ultimately will live", "Dan Zinner","432 Park Avenue", "Park Avenue", "The Pie Maker", "Long Island", "Sayville", "Lee Pace", "Nicholas Naudé","My address is 432 Park Avenue", "New York is where I ultimately will live", "Dan Zinner","432 Park Avenue", "Park Avenue", "Pushing Daisies", "Long Island", "Sayville", "Lee Pace", "Nicholas Naudé","My address is 432 Park Avenue", "New York is where I ultimately will live", "Dan Zinner", "432 Park Avenue", "Park Avenue", "The Pie Hole", "Long Island", "Sayville", "Lee Pace", "Nicholas Naudé","My address is 432 Park Avenue", "New York is where I ultimately will live", "Dan Zinner","432 Park Avenue", "Park Avenue", "The Pie Maker", "Long Island", "Sayville", "Lee Pace", "Nicholas Naudé","My address is 432 Park Avenue", "New York is where I ultimately will live", "Dan Zinner","432 Park Avenue", "Park Avenue", "Pushing Daisies", "Long Island", "Sayville", "Lee Pace", "Nicholas Naudé","My address is 432 Park Avenue", "New York is where I ultimately will live", "Dan Zinner"]
+    var testArray = ["432 Park Avenue", "This is a long sentence to see how it fits in the collectionview", "This is shorter", "Sentence here", "Another sentence and another"]
     //    let appDel : AppDelegate = (UIApplication.sharedApplication().delegate as! AppDelegate)
     //    let context : NSManagedObjectContext = appDel.managedObjectContext
     var reuseIdentifier = "Cell"
@@ -184,30 +184,7 @@ class CollectionViewController: UIViewController, NSFetchedResultsControllerDele
     //    }
     //    //
     //
-    //
-    //    func controllerDidChangeContent(controller: NSFetchedResultsController) {
-    //        // Checks if we should reload the collection view to fix a bug @ http://openradar.appspot.com/12954582
-    //        if self.shouldReloadCollectionView {
-    //            self.collectionView!.reloadData()
-    //        } else {
-    //            self.collectionView!.performBatchUpdates({
-    //                self.blockOperation.start()
-    //                }, completion: nil )
-    //        }
-    //    }
-    //    //
-    
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-     // Get the new view controller using [segue destinationViewController].
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
+
     
     // MARK: UICollectionViewDataSource
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
