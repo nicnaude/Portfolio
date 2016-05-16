@@ -1,16 +1,11 @@
 import UIKit
 import CoreData
 import AVFoundation
+import CoreGraphics
 
-protocol MortarStyleLayoutDelegate {
-    // 1. Method to ask the delegate for the height of the image
-    func collectionView(collectionView:UICollectionView, heightForPhotoAtIndexPath indexPath:NSIndexPath , withWidth:CGFloat) -> CGFloat
-    // 2. Method to ask the delegate for the height of the annotation text
-    func collectionView(collectionView: UICollectionView, heightForAnnotationAtIndexPath indexPath: NSIndexPath, withWidth width: CGFloat) -> CGFloat
-    
-}
+var collectionViewWidth = CGFloat()
 
-class CollectionViewController: UICollectionViewController, NSFetchedResultsControllerDelegate, UICollectionViewDelegateFlowLayout {
+class CollectionViewController: UIViewController, NSFetchedResultsControllerDelegate, UICollectionViewDelegateFlowLayout {
     
     @IBOutlet var uiCollectionView: UICollectionView!
     
@@ -18,32 +13,71 @@ class CollectionViewController: UICollectionViewController, NSFetchedResultsCont
     var shouldReloadCollectionView = false
     var blockOperation = NSBlockOperation()
     var _fetchedResultsController: NSFetchedResultsController? = nil
-    var testArray = ["1", "2", "3", "4", "1", "2", "3","1", "2", "3", "4", "1", "2", "3","1", "2", "3", "4", "1", "2", "3","1", "2", "3", "4", "1", "2", "3","1", "2", "3", "4", "1", "2", "3","1", "2", "3", "4", "1", "2", "3"]
+    var testArray = ["432 Park Avenue", "Park Avenue is a street in New York where lots of people live and this is a very long sentence to see how it looks on the collectionview cell", "The Pie Hole", "Long Island", "Sayville", "Lee Pace", "Nicholas Naudé","My address is 432 Park Avenue", "New York is where I ultimately will live", "Dan Zinner","432 Park Avenue", "Park Avenue", "The Pie Maker", "Long Island", "Sayville", "Lee Pace", "Nicholas Naudé","My address is 432 Park Avenue", "New York is where I ultimately will live", "Dan Zinner","432 Park Avenue", "Park Avenue", "Pushing Daisies", "Long Island", "Sayville", "Lee Pace", "Nicholas Naudé","My address is 432 Park Avenue", "New York is where I ultimately will live", "Dan Zinner", "432 Park Avenue", "Park Avenue", "The Pie Hole", "Long Island", "Sayville", "Lee Pace", "Nicholas Naudé","My address is 432 Park Avenue", "New York is where I ultimately will live", "Dan Zinner","432 Park Avenue", "Park Avenue", "The Pie Maker", "Long Island", "Sayville", "Lee Pace", "Nicholas Naudé","My address is 432 Park Avenue", "New York is where I ultimately will live", "Dan Zinner","432 Park Avenue", "Park Avenue", "Pushing Daisies", "Long Island", "Sayville", "Lee Pace", "Nicholas Naudé","My address is 432 Park Avenue", "New York is where I ultimately will live", "Dan Zinner"]
     //    let appDel : AppDelegate = (UIApplication.sharedApplication().delegate as! AppDelegate)
     //    let context : NSManagedObjectContext = appDel.managedObjectContext
     var reuseIdentifier = "Cell"
+        
     
+    let gridFlowLayout = ProductsGridFlowLayout()
+    let isGridFlowLayoutUsed = true
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = UIColor.whiteColor()
+        collectionViewWidth = CGRectGetWidth(uiCollectionView!.frame)
+        print("collectionViewWidth: \(collectionViewWidth)")
         
-        view.backgroundColor = UIColor(red:0.98, green:0.98, blue:0.98, alpha:1.0)
-        //        // Set the PinterestLayout delegate
-        //        if let layout = collectionView?.collectionViewLayout as? PinterestLayout {
-        //            layout.delegate = self
-        //        }
-        let screenSize: CGRect = UIScreen.mainScreen().bounds
-        let screenWidth = screenSize.width
-        let screenHeight = screenSize.height
+        UIView.animateWithDuration(0.2) { () -> Void in
+            self.uiCollectionView.collectionViewLayout.invalidateLayout()
+            self.uiCollectionView.setCollectionViewLayout(self.gridFlowLayout, animated: true)
+        }
+        uiCollectionView.collectionViewLayout = gridFlowLayout
         
-        uiCollectionView!.backgroundColor = UIColor.clearColor()
-        uiCollectionView?.contentSize.height = screenHeight/3 - 40
-        print(screenHeight/3 - 40)
-        uiCollectionView?.contentSize.width = screenWidth/3 - 40
-        print(screenWidth/3 - 40)
-        uiCollectionView!.contentInset = UIEdgeInsets(top: 23, left: 5, bottom: 10, right: 5)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CollectionViewController.rotated), name: UIDeviceOrientationDidChangeNotification, object: nil)
     }
     //
+    
+
+    func rotated()
+    {
+        if(UIDeviceOrientationIsLandscape(UIDevice.currentDevice().orientation))
+        {
+            UIView.animateWithDuration(0.2) { () -> Void in
+                self.uiCollectionView.collectionViewLayout.invalidateLayout()
+                self.uiCollectionView.setCollectionViewLayout(self.gridFlowLayout, animated: true)
+            }
+            uiCollectionView.collectionViewLayout = gridFlowLayout
+            print("landscape")
+        }
+        
+        if(UIDeviceOrientationIsPortrait(UIDevice.currentDevice().orientation))
+        {
+            UIView.animateWithDuration(0.2) { () -> Void in
+                self.uiCollectionView.collectionViewLayout.invalidateLayout()
+                self.uiCollectionView.setCollectionViewLayout(self.gridFlowLayout, animated: true)
+            }
+            uiCollectionView.collectionViewLayout = gridFlowLayout
+            print("Portrait")
+        }
+        
+    }
+    
+    
+    //layout collectionview cell
+//    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+//        
+//        let numberOfCell: CGFloat = 3.5   //you need to give a type as CGFloat
+//        let cellWidth = UIScreen.mainScreen().bounds.size.width / numberOfCell
+//        let cellHeight = UIScreen.mainScreen().bounds.size.width / numberOfCell + 45
+//        return CGSizeMake(cellWidth, cellHeight)
+//    }//
+
+
+    override func viewDidLayoutSubviews() {
+        navigationController!.navigationBar.barTintColor = UIColor.whiteColor()
+    }
     
     
     override func didReceiveMemoryWarning() {
@@ -176,33 +210,10 @@ class CollectionViewController: UICollectionViewController, NSFetchedResultsCont
     
     
     // MARK: UICollectionViewDataSource
-    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         //        return self.fetchedResultsController.sections?.count ?? 0
         return 1
     }
-    //
-    
-    
-    // MARK: - UICollectionViewFlowLayout
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        let screenSize: CGRect = UIScreen.mainScreen().bounds
-        let screenWidth = screenSize.width
-        let screenHeight = screenSize.height
-        //        let cellWidth = CGSize()
-        //        let cellHeight = CGSize()
-        return CGSizeMake((UIScreen.mainScreen().bounds.width-15)/4,120); //use height whatever //
-        let cellHeight = screenHeight/2 - 40
-        print(cellHeight)
-        let cellWidth = screenWidth/2 - 40
-        print(cellWidth)
-        return CGSizeMake(cellWidth, cellHeight)
-    }
-    
-    
-    // func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
-    // let leftRightInset = self.view.frame.size.width / 14.0
-    // return UIEdgeInsetsMake(0, leftRightInset, 0, leftRightInset)
-    // }
     //
     
     
@@ -220,101 +231,25 @@ class CollectionViewController: UICollectionViewController, NSFetchedResultsCont
     
     
     
-    
-    
-    
-    
-    // MARK: UICollectionViewDelegate
-    
-    /*
-     // Uncomment this method to specify if the specified item should be highlighted during tracking
-     override func collectionView(collectionView: UICollectionView, shouldHighlightItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-     return true
-     }
-     */
-    
-    /*
-     // Uncomment this method to specify if the specified item should be selected
-     override func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-     return true
-     }
-     */
-    
-    /*
-     // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-     override func collectionView(collectionView: UICollectionView, shouldShowMenuForItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-     return false
-     }
-     
-     override func collectionView(collectionView: UICollectionView, canPerformAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) -> Bool {
-     return false
-     }
-     
-     override func collectionView(collectionView: UICollectionView, performAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) {
-     
-     }
-     */
-    
-    
-    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return testArray.count
     }
     
-    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        //        let object = self.fetchedResultsController.objectAtIndexPath(indexPath) as! Project
+    
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = uiCollectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! CollectionViewCell
         cell.collectionImageView.image = UIImage(named: "placeholder")
         cell.collectionLabel.text = testArray[indexPath.item]
-        //        cell.collectionLabel.text = testArray[indexPath.item]
-        //        cell.collectionLabel.text = object.valueForKey("projectTitle")!.description
-        print(cell)
+        cell.contentView.layer.borderWidth = 0.5
+        cell.layer.backgroundColor = UIColor(red:0.98, green:0.98, blue:0.98, alpha:1.0).CGColor
+        cell.contentView.layer.borderColor = UIColor(red:0.90, green:0.90, blue:0.90, alpha:1.0).CGColor
+        cell.contentView.layer.masksToBounds = true
+        cell.layer.masksToBounds = true
+        cell.layer.shadowPath = UIBezierPath(roundedRect:cell.bounds, cornerRadius:cell.contentView.layer.cornerRadius).CGPath
+
         return cell
     }
-    
-    
-    //    // 1. Returns the photo height
-    //    func collectionView(collectionView:UICollectionView, heightForPhotoAtIndexPath indexPath:NSIndexPath , withWidth width:CGFloat) -> CGFloat {
-    //        let photo = UIImage(named: "placeholder")
-    //        let boundingRect =  CGRect(x: 0, y: 0, width: width, height: CGFloat(MAXFLOAT))
-    //        let rect  = AVMakeRectWithAspectRatioInsideRect(photo!.size, boundingRect)
-    //        return rect.size.height
-    //    }
-    
-    //    // 2. Returns the annotation size based on the text
-    //    func collectionView(collectionView: UICollectionView, heightForAnnotationAtIndexPath indexPath: NSIndexPath, withWidth width: CGFloat) -> CGFloat {
-    //        let annotationPadding = CGFloat(4)
-    //        let annotationHeaderHeight = CGFloat(17)
-    //        let commentHeight = CGFloat(50)
-    //
-    //        //        let photo = testArray[indexPath.item]
-    //        //        let font = UIFont(name: "AvenirNext-Regular", size: 10)!
-    //        //        let commentHeight = photo.heightForComment(font, width: width)
-    //        let height = annotationPadding + annotationHeaderHeight + commentHeight + annotationPadding
-    //        return height
-    //}
     
 } // THE END
 
 
-
-// Add anywhere in your app
-extension UIImage {
-    func imageWithColor(tintColor: UIColor) -> UIImage {
-        UIGraphicsBeginImageContextWithOptions(self.size, false, self.scale)
-        
-        let context = UIGraphicsGetCurrentContext()! as CGContextRef
-        CGContextTranslateCTM(context, 0, self.size.height)
-        CGContextScaleCTM(context, 1.0, -1.0);
-        CGContextSetBlendMode(context, kCGBlendModeNormal)
-        
-        let rect = CGRectMake(0, 0, self.size.width, self.size.height) as CGRect
-        CGContextClipToMask(context, rect, self.CGImage)
-        tintColor.setFill()
-        CGContextFillRect(context, rect)
-        
-        let newImage = UIGraphicsGetImageFromCurrentImageContext() as UIImage
-        UIGraphicsEndImageContext()
-        
-        return newImage
-    }
-}
