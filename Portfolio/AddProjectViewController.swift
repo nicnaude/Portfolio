@@ -22,8 +22,13 @@ class AddProjectViewController: UIViewController, UIImagePickerControllerDelegat
         super.viewDidLoad()
         imagePickerController.delegate = self
         imagePickerController.allowsEditing = true
-        
-        // CoreData: 1
+        loadCoreData()
+    }
+    //
+    
+    
+    func loadCoreData() {
+        // 1
         let appDelegate =
             UIApplication.sharedApplication().delegate as! AppDelegate
         
@@ -42,7 +47,7 @@ class AddProjectViewController: UIViewController, UIImagePickerControllerDelegat
         }
 
     }
-    //
+    
     
     @IBAction func onAddPhotoTapped(sender: AnyObject) {
     }
@@ -58,7 +63,7 @@ class AddProjectViewController: UIViewController, UIImagePickerControllerDelegat
         imagePickerController.sourceType = UIImagePickerControllerSourceType.Camera
         presentViewController(imagePickerController, animated: true, completion: nil)
     }
-    
+
     @IBAction func onSaveButtonTapped(sender: AnyObject) {
         let appDel : AppDelegate = (UIApplication.sharedApplication().delegate as! AppDelegate)
         let context : NSManagedObjectContext = appDel.managedObjectContext
@@ -76,17 +81,13 @@ class AddProjectViewController: UIViewController, UIImagePickerControllerDelegat
                 abort()
             }
         }
-        self.dismissViewControllerAnimated(true, completion: nil)
+        performSegueWithIdentifier("unwindToRoot", sender: self)
     }
-    
-    @IBAction func onCancelButtonTapped(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true, completion: nil)
-    }
+    //
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "backToRoot" {
-        let destination = segue.destinationViewController as! CollectionViewController
-        destination.uiCollectionView.reloadData()
+        if segue.identifier == "unwindToRoot" {
+            print("Segue performed successfully.")
         }
     }
     

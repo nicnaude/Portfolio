@@ -8,16 +8,13 @@ var collectionViewWidth = CGFloat()
 class CollectionViewController: UIViewController, NSFetchedResultsControllerDelegate, UICollectionViewDelegateFlowLayout {
     
     @IBOutlet var uiCollectionView: UICollectionView!
+    @IBAction func unwindToRoot(segue: UIStoryboardSegue) {}
     
     var managedObjectContext: NSManagedObjectContext? = nil
     var shouldReloadCollectionView = false
     var blockOperation = NSBlockOperation()
     var _fetchedResultsController: NSFetchedResultsController? = nil
     var projects = [NSManagedObject]()
-    
-    var testArray = ["432 Park Avenue", "Sotheby's", "The Blue Curve", "Sentence here", "Another sentence and another", "Across 110th Street", "Ellsworth", "This is shorter", "Sentence here", "Another sentence and another", "432 Park Avenue", "Mark Rothko", "This is shorter", "Sentence here", "Another sentence and another", "432 Park Avenue", "This is a long sentence to see how it fits in the collectionview", "This is shorter", "Sentence here", "Another sentence and another", "432 Park Avenue", "This is a long sentence to see how it fits in the collectionview", "This is shorter", "Sentence here", "Another sentence and another"]
-    //    let appDel : AppDelegate = (UIApplication.sharedApplication().delegate as! AppDelegate)
-    //    let context : NSManagedObjectContext = appDel.managedObjectContext
     var reuseIdentifier = "Cell"
     
     
@@ -144,6 +141,16 @@ class CollectionViewController: UIViewController, NSFetchedResultsControllerDele
         
         return cell
     }
+    //
+    
+    
+    // MARK: - Segues
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "unwindToRoot" {
+                print("Yay! Hamsters!")
+        }
+    }
+    //
     
 } // THE END
 
