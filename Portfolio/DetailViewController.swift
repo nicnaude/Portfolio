@@ -23,6 +23,7 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         configureView()
+        self.navigationController!.navigationBar.topItem!.title = ""
     }
     
     func configureView() {

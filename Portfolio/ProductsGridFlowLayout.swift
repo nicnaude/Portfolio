@@ -37,7 +37,7 @@ class ProductsGridFlowLayout: UICollectionViewFlowLayout {
     }
     
     func itemHeight() -> CGFloat {
-        return ((CGRectGetWidth(collectionView!.frame)-42)/3)-10+100
+        return ((CGRectGetWidth(collectionView!.frame)-42)/2.7)-10+100
     }
     
     override var itemSize: CGSize {

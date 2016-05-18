@@ -16,24 +16,42 @@ class AddProjectViewController: UIViewController, UIImagePickerControllerDelegat
     let imagePickerController = UIImagePickerController()
     var usersImage: UIImage!
     var imageURL: NSURL?
-
+    var projects = [NSManagedObject]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         imagePickerController.delegate = self
         imagePickerController.allowsEditing = true
-        // Do any additional setup after loading the view.
+        
+        // CoreData: 1
+        let appDelegate =
+            UIApplication.sharedApplication().delegate as! AppDelegate
+        
+        let managedContext = appDelegate.managedObjectContext
+        
+        //2
+        let fetchRequest = NSFetchRequest(entityName: "Project")
+        
+        //3
+        do {
+            let results =
+                try managedContext.executeFetchRequest(fetchRequest)
+            projects = results as! [NSManagedObject]
+        } catch let error as NSError {
+            print("Could not fetch \(error), \(error.userInfo)")
+        }
+
     }
-    
-    //    override func viewWillDisappear(animated: Bool){
-    //}
+    //
     
     @IBAction func onAddPhotoTapped(sender: AnyObject) {
     }
+    //
 
     @IBAction func onAddCoverPhotoTapped(sender: AnyObject) {
         presentCamera()
     }
+    //
     
     func presentCamera()
     {
@@ -64,4 +82,12 @@ class AddProjectViewController: UIViewController, UIImagePickerControllerDelegat
     @IBAction func onCancelButtonTapped(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
-}
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "backToRoot" {
+        let destination = segue.destinationViewController as! CollectionViewController
+        destination.uiCollectionView.reloadData()
+        }
+    }
+    
+} // The end
