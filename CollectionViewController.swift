@@ -23,22 +23,27 @@ class CollectionViewController: UIViewController, NSFetchedResultsControllerDele
     
     let gridFlowLayout = ProductsGridFlowLayout()
     let isGridFlowLayoutUsed = true
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.view.backgroundColor = UIColor.whiteColor()
         addBlurEffect()
-        }
+    }
     //
     
     
     override func viewWillAppear(animated: Bool) {
-        // CoreData: 1
+        loadCoreData()
+    }
+    //
+    
+    
+    func loadCoreData() {
+        //1
         let appDelegate =
             UIApplication.sharedApplication().delegate as! AppDelegate
-        
         let managedContext = appDelegate.managedObjectContext
         
         //2
@@ -52,11 +57,13 @@ class CollectionViewController: UIViewController, NSFetchedResultsControllerDele
         } catch let error as NSError {
             print("Could not fetch \(error), \(error.userInfo)")
         }
+        
+        self.uiCollectionView.reloadData()
+        print("Collectionview data reloaded")
+        
     }
-    //
-
-
-
+    
+    
     func addBlurEffect() {
         // Add blur view
         let bounds = self.navigationController?.navigationBar.bounds as CGRect!
@@ -70,12 +77,16 @@ class CollectionViewController: UIViewController, NSFetchedResultsControllerDele
         if(UIDeviceOrientationIsLandscape(UIDevice.currentDevice().orientation))
         {
             drawCollectionView()
+            self.uiCollectionView.reloadData()
+            print("Reloaded")
             print("landscape")
         }
         
         if(UIDeviceOrientationIsPortrait(UIDevice.currentDevice().orientation))
         {
             drawCollectionView()
+            self.uiCollectionView.reloadData()
+            print("Reloaded")
             print("Portrait")
         }
         
@@ -98,7 +109,7 @@ class CollectionViewController: UIViewController, NSFetchedResultsControllerDele
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
             self.drawCollectionView()
         })
-
+        
     }
     
     
@@ -107,7 +118,7 @@ class CollectionViewController: UIViewController, NSFetchedResultsControllerDele
     }
     //
     
-
+    
     // MARK: UICollectionViewDataSource
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
