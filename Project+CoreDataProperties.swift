@@ -17,7 +17,7 @@ extension Project {
     @NSManaged var projectTitle: String?
     @NSManaged var projectWriteUp: String?
     @NSManaged var coverImage: NSData?
-    @NSManaged var timeStamp: NSDate?
+    @NSManaged var timeStamp: NSDate!
     @NSManaged var owns: NSSet?
 
 }

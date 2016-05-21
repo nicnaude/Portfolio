@@ -9,22 +9,32 @@
 import UIKit
 import CoreData
 
-class DetailViewController: UIViewController {
+class DetailViewController: UIViewController, NSFetchedResultsControllerDelegate, UICollectionViewDelegateFlowLayout {
     
     @IBOutlet weak var titleTextLabel: UILabel!
     @IBOutlet weak var descriptionTextLabel: UILabel!
+    @IBOutlet weak var coverImage: UIImageView!
     
+    var selectedIndexPath: NSIndexPath! = nil
     var project : Project! = nil
-    
     var detailItem: AnyObject? {
         didSet {
         }
     }
+
+//    lazy var context: NSManagedObjectContext = {
+//        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+//        return appDelegate.managedObjectContext
+//    }()
+//    var fetchedResultsController: NSFetchedResultsController!
+    
     
     override func viewDidLoad() {
-        configureView()
+//        configureView()
         self.navigationController!.navigationBar.topItem!.title = ""
     }
+    //
+    
     
     func configureView() {
         // Update the user interface for the detail item.
@@ -39,9 +49,26 @@ class DetailViewController: UIViewController {
             }
         }
     }
-//    func configureCell (){
-//        self.titleTextLabel.text = self.project?.projectTitle
-//        self.descriptionTextLabel.text = self.project?.projectWriteUp
-//    }
+    //
     
-}
+    @IBAction func deleteCurrentProject(sender: AnyObject) {
+//        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+//        let moc = appDelegate.managedObjectContext
+//        let entity = fetchedResultsController.objectAtIndexPath(selectedIndexPath) as! Project
+//
+//        moc.deleteObject(entity)
+//        do {
+//            try moc.save()
+//        } catch let error as NSError {
+//            print("Error saving context after delete: \(error.localizedDescription)")
+//        }
+//        performSegueWithIdentifier("unwindToRoot", sender: self)
+//    }
+//    
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        if segue.identifier == "unwindToRoot" {
+//            print("Segue performed successfully.")
+//        }
+    }
+    
+} // The End

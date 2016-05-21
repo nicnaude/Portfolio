@@ -188,6 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				4AC3083A1C71298100C7B464 /* Main.storyboard */,
+				4A2617AF1CE4C78B0059B7D6 /* ProductsGridFlowLayout.swift */,
 				4A6B20F11CE1EE4000B15F2F /* CollectionViewCell.swift */,
 				4AC3083D1C71298100C7B464 /* Assets.xcassets */,
 			);
@@ -225,7 +226,6 @@
 			children = (
 				4A6B20EF1CE1E77D00B15F2F /* CollectionViewController.swift */,
 				4AC308711C712DEE00C7B464 /* AddProjectViewController.swift */,
-				4A2617AF1CE4C78B0059B7D6 /* ProductsGridFlowLayout.swift */,
 				4AC308381C71298100C7B464 /* DetailViewController.swift */,
 			);
 			name = Controller;

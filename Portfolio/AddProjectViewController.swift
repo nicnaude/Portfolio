@@ -22,37 +22,14 @@ class AddProjectViewController: UIViewController, UIImagePickerControllerDelegat
         super.viewDidLoad()
         imagePickerController.delegate = self
         imagePickerController.allowsEditing = true
-        loadCoreData()
     }
     //
-    
-    
-    func loadCoreData() {
-        // 1
-        let appDelegate =
-            UIApplication.sharedApplication().delegate as! AppDelegate
-        
-        let managedContext = appDelegate.managedObjectContext
-        
-        //2
-        let fetchRequest = NSFetchRequest(entityName: "Project")
-        
-        //3
-        do {
-            let results =
-                try managedContext.executeFetchRequest(fetchRequest)
-            projects = results as! [NSManagedObject]
-        } catch let error as NSError {
-            print("Could not fetch \(error), \(error.userInfo)")
-        }
-
-    }
     
     
     @IBAction func onAddPhotoTapped(sender: AnyObject) {
     }
     //
-
+    
     @IBAction func onAddCoverPhotoTapped(sender: AnyObject) {
         presentCamera()
     }
@@ -63,27 +40,27 @@ class AddProjectViewController: UIViewController, UIImagePickerControllerDelegat
         imagePickerController.sourceType = UIImagePickerControllerSourceType.Camera
         presentViewController(imagePickerController, animated: true, completion: nil)
     }
-
+    
     @IBAction func onSaveButtonTapped(sender: AnyObject) {
-        let appDel : AppDelegate = (UIApplication.sharedApplication().delegate as! AppDelegate)
-        let context : NSManagedObjectContext = appDel.managedObjectContext
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let moc = appDelegate.managedObjectContext
+        let entity = NSEntityDescription.entityForName("Project", inManagedObjectContext: moc)
+        let projectToAdd = Project(entity:entity!, insertIntoManagedObjectContext: moc)
         
-        let newProject = NSEntityDescription.insertNewObjectForEntityForName("Project", inManagedObjectContext: context)
-        newProject.setValue(projectTitleTextField.text, forKey: "projectTitle")
-        newProject.setValue(projectDescriptionTextField.text, forKey: "projectWriteUp")
+        projectToAdd.setValue(projectTitleTextField.text, forKey: "projectTitle")
+        projectToAdd.setValue(projectDescriptionTextField.text, forKey: "projectWriteUp")
+        print(NSDate())
+        projectToAdd.setValue(NSDate(), forKey: "timeStamp")
         
-        if context.hasChanges {
-            do {
-                try context.save()
-            } catch {
-                let nserror = error as NSError
-                NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
-                abort()
-            }
+        do {
+            try moc.save()
+        } catch let error as NSError {
+            print("Error saving movie \(error.localizedDescription)")
         }
         performSegueWithIdentifier("unwindToRoot", sender: self)
     }
     //
+    
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "unwindToRoot" {

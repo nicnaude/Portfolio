@@ -28,14 +28,17 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="jWg-WX-CaK">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Project write up" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H0l-PH-aie">
-                                <rect key="frame" x="20" y="114" width="560" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Project write up" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H0l-PH-aie">
+                                <rect key="frame" x="20" y="114" width="285" height="21"/>
                                 <fontDescription key="fontDescription" name="ProximaNovaA-Regular" family="Proxima Nova Alt" pointSize="16"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Project title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Wo-mp-6vJ">
-                                <rect key="frame" x="20" y="85" width="560" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Project title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Wo-mp-6vJ">
+                                <rect key="frame" x="20" y="85" width="280" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="cT0-YV-lGU"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="ProximaNova-Bold" family="Proxima Nova" pointSize="20"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -44,15 +47,29 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="jWg-WX-CaK" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leading" id="BD2-zM-9aJ"/>
+                            <constraint firstItem="6Wo-mp-6vJ" firstAttribute="top" secondItem="SYR-Wa-9uf" secondAttribute="bottom" constant="21" id="D3p-X7-HdC"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="H0l-PH-aie" secondAttribute="trailing" constant="-1" id="NDr-vv-Uaj"/>
                             <constraint firstAttribute="trailing" secondItem="jWg-WX-CaK" secondAttribute="trailing" id="TYE-65-tHF"/>
+                            <constraint firstItem="6Wo-mp-6vJ" firstAttribute="centerX" secondItem="jWg-WX-CaK" secondAttribute="centerX" id="VLj-dl-8LE"/>
+                            <constraint firstItem="GAO-Cl-Wes" firstAttribute="top" secondItem="H0l-PH-aie" secondAttribute="bottom" constant="301" id="XJO-Sc-N2q"/>
+                            <constraint firstItem="6Wo-mp-6vJ" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leadingMargin" constant="4" id="eVu-5w-dGC"/>
                             <constraint firstItem="jWg-WX-CaK" firstAttribute="top" secondItem="svH-Pt-448" secondAttribute="top" id="gG5-6J-DSE"/>
+                            <constraint firstItem="H0l-PH-aie" firstAttribute="top" secondItem="6Wo-mp-6vJ" secondAttribute="bottom" constant="8" symbolic="YES" id="n1C-0Z-8li"/>
                             <constraint firstAttribute="bottom" secondItem="jWg-WX-CaK" secondAttribute="bottom" id="p36-1f-MmY"/>
+                            <constraint firstItem="6Wo-mp-6vJ" firstAttribute="leading" secondItem="H0l-PH-aie" secondAttribute="leading" id="vDW-q7-AHb"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="hgM-WS-7NS"/>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Detail" id="mOI-FS-AaM"/>
+                    <navigationItem key="navigationItem" title="Detail" id="mOI-FS-AaM">
+                        <barButtonItem key="rightBarButtonItem" title="Delete" id="i3v-Ip-uGG">
+                            <connections>
+                                <action selector="deleteCurrentProject:" destination="JEX-9P-axG" id="icW-5H-Okl"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="coverImage" destination="jWg-WX-CaK" id="4t1-oj-fsj"/>
                         <outlet property="descriptionTextLabel" destination="H0l-PH-aie" id="SHJ-GP-Ymw"/>
                         <outlet property="titleTextLabel" destination="6Wo-mp-6vJ" id="YuI-Pp-AE3"/>
                     </connections>
@@ -282,15 +299,10 @@
                                             <constraint firstItem="Cnm-Ol-jFG" firstAttribute="top" secondItem="9Tr-VJ-1Pi" secondAttribute="topMargin" constant="-8" id="ut3-h9-BXA"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="Cnm-Ol-jFG" secondAttribute="trailing" constant="-8" id="zmD-64-gnA"/>
                                         </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="0.0"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <outlet property="collectionImageView" destination="Cnm-Ol-jFG" id="aL0-Pp-FML"/>
                                             <outlet property="collectionLabel" destination="dHt-Mh-xbD" id="xYi-Mz-gJ0"/>
-                                            <segue destination="JEX-9P-axG" kind="show" id="8GB-dN-19s"/>
+                                            <segue destination="JEX-9P-axG" kind="show" identifier="showProject" id="8GB-dN-19s"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -307,11 +319,6 @@
                             <constraint firstAttribute="bottom" secondItem="chn-A5-tGl" secondAttribute="bottom" id="fMI-M9-QvG"/>
                             <constraint firstItem="chn-A5-tGl" firstAttribute="top" secondItem="8dG-Zq-Jbu" secondAttribute="top" id="z6i-S8-vZc"/>
                         </constraints>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                <real key="value" value="0.0"/>
-                            </userDefinedRuntimeAttribute>
-                        </userDefinedRuntimeAttributes>
                     </view>
                     <toolbarItems>
                         <barButtonItem title="Item" id="KeM-A4-6Bo"/>

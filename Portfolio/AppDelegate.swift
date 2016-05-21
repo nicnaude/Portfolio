@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-    
+        
         
         UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIColor(red:0.58, green:0.58, blue:0.58, alpha:1.0)], forState:.Normal) // deselected icon color  UIColor(red:0.58, green:0.58, blue:0.58, alpha:1.0)
         UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.blackColor()], forState:.Selected) // selected icon color
@@ -25,16 +25,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UITabBarItem.appearance().setTitleTextAttributes([NSFontAttributeName: font], forState: .Normal)
         
         
-        
-        // Override point for customization after application launch.
-        //        let splitViewController = self.window!.rootViewController as! UISplitViewController
-        //        let navigationController = splitViewController.viewControllers[splitViewController.viewControllers.count-1] as! UINavigationController
-        //        navigationController.topViewController!.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem()
-        //        splitViewController.delegate = self
-        
-        //        let masterNavigationController = splitViewController.viewControllers[0] as! UINavigationController
-        //        let controller = masterNavigationController.topViewController as! MasterViewController
-        //        controller.managedObjectContext = self.managedObjectContext
+//        //         Override point for customization after application launch.
+//        let splitViewController = self.window!.rootViewController as! UISplitViewController
+//        let navigationController = splitViewController.viewControllers[splitViewController.viewControllers.count-1] as! UINavigationController
+//        navigationController.topViewController!.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem()
+//        splitViewController.delegate = self
+//        
+//        let masterNavigationController = splitViewController.viewControllers[0] as! UINavigationController
+//        let controller = masterNavigationController.topViewController as! MasterViewController
+//        controller.managedObjectContext = self.managedObjectContext
         return true
     }
     
